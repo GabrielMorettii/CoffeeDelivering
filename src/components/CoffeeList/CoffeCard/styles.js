@@ -18,22 +18,6 @@ export const Container = styled.div`
     transform: translateY(-25%);
   }
 
-  .labels {
-    display: flex;
-    gap: 4px;
-    margin-bottom: 20px;
-
-    .coffee-label {
-      background: ${({ theme }) => theme.colors.brand.yellow_light};
-      color: ${({ theme }) => theme.colors.brand.yellow_dark};
-      padding: 4px 8px;
-      border-radius: 100px;
-      text-transform: uppercase;
-      font-size: 12px;
-      font-weight: 700;
-    }
-  }
-
   h4 {
     font-weight: 700;
     font-size: 20px;
@@ -48,34 +32,40 @@ export const Container = styled.div`
 
     margin-top: 8px;
   }
+`;
 
-  .card-bottom {
+export const LabelsContainer = styled.div`
+  display: flex;
+  gap: 4px;
+  margin-bottom: 20px;
+
+  .coffee-label {
+    background: ${({ theme }) => theme.colors.brand.yellow_light};
+    color: ${({ theme }) => theme.colors.brand.yellow_dark};
+    padding: 4px 8px;
+    border-radius: 100px;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 700;
+  }
+`;
+
+export const CardBottom = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 24px;
+
+  .wrapper {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    width: 100%;
-    padding: 24px;
+    gap: 8px;
+  }
 
-    .wrapper {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    h5 {
-      font-size: 24px;
-      color: ${({ theme }) => theme.colors.base.text};
-    }
-
-    button {
-      background: ${({ theme }) => theme.colors.brand.purple_dark};
-      padding: 8px;
-      border-radius: 6px;
-
-      img {
-        height: 18px;
-      }
-    }
+  h5 {
+    font-size: 24px;
+    color: ${({ theme }) => theme.colors.base.text};
   }
 `;
 
@@ -83,6 +73,7 @@ export const Counter = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
   padding: 8px;
   gap: 4px;
   border-radius: 6px;
@@ -96,5 +87,26 @@ export const Counter = styled.div`
   img {
     width: 14px;
     cursor: pointer;
+
+    transition: all 0.1s ease-in;
+
+    &:hover {
+      filter: brightness(50%);
+    }
+  }
+`;
+
+export const CartPurchaseButton = styled.button`
+  background: ${({ theme }) => theme.colors.brand.purple_dark};
+  padding: 8px;
+  border-radius: 6px;
+
+  img {
+    height: 18px;
+  }
+
+  &:hover {
+    transition: all 0.1s ease-in;
+    background: ${({ theme }) => theme.colors.brand.purple};
   }
 `;

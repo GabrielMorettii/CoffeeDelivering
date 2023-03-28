@@ -1,4 +1,4 @@
-import { Container, Counter } from "./styles";
+import { CardBottom, CartPurchaseButton, Container, Counter, LabelsContainer } from "./styles";
 import whiteCar from "../../../assets/images/icons/cart-white.svg";
 import minusIcon from "../../../assets/images/icons/minus-bold.svg";
 import plusIcon from "../../../assets/images/icons/plus-bold.svg";
@@ -10,20 +10,27 @@ export default function CoffeCard({
   labels,
   price,
 }) {
+  const formatPriceToBRL = (price) => {
+    return new Intl.NumberFormat("pt-BR", {
+      style: "currency",
+      currency: "BRL",
+    }).format(price);
+  };
+
   return (
     <Container>
       <img src={image} alt={title} />
-      <div className="labels">
+      <LabelsContainer>
         {labels.map((label, index) => (
           <span key={`label-${index}`} className="coffee-label">
             {label}
           </span>
         ))}
-      </div>
+      </LabelsContainer>
       <h4>{title}</h4>
       <p>{description}</p>
-      <div className="card-bottom">
-        <h5>R${price}</h5>
+      <CardBottom>
+        <h5>{formatPriceToBRL(price)}</h5>
         <div className="wrapper">
           <Counter>
             <img src={minusIcon} id="teste" alt="Minus Icon"/>
@@ -31,11 +38,11 @@ export default function CoffeCard({
             <img src={plusIcon} alt="Plus Icon" />
           </Counter>
 
-          <button type="button">
+          <CartPurchaseButton>
             <img src={whiteCar} alt="Cart Icon" />
-          </button>
+          </CartPurchaseButton>
         </div>
-      </div>
+      </CardBottom>
     </Container>
   );
 }
