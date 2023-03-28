@@ -6,7 +6,7 @@ export const Container = styled.div`
   align-items: center;
   padding: 32px 0;
 
-  > img {
+  a img {
     height: 50px;
   }
 `;
@@ -21,15 +21,15 @@ export const RightTabSide = styled.div`
     background: ${({ theme }) => theme.colors.brand.yellow_light};
     margin-left: 12px;
     border-radius: 6px;
-  }
 
-  .cart {
-    height: 22px;
+    svg {
+      height: 22px;
+      fill: ${({ theme }) => theme.colors.brand.yellow_dark};
+      transition: all 0.1s ease-in;
 
-    transition: all 0.1s ease-in;
-
-    &:hover {
-      opacity: 0.7;
+      &:hover {
+        opacity: 0.8;
+      }
     }
   }
 `;
@@ -48,7 +48,8 @@ export const Location = styled.div`
     color: ${({ theme }) => theme.colors.brand.purple_dark};
   }
 
-  img {
-    background: none;
+  svg {
+    height: 22px;
+    fill: ${({ theme }) => theme.colors.brand.purple};
   }
 `;

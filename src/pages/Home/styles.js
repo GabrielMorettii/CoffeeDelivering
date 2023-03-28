@@ -36,10 +36,11 @@ export const IconItem = styled.div`
   gap: 12px;
   color: ${({ theme }) => theme.colors.base.text};
 
-  img {
+  svg {
     width: 32px;
     padding: 8px;
     border-radius: 50%;
+    fill: white;
   }
 
   .cart {

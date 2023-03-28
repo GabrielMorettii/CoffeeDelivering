@@ -54,13 +54,14 @@ export const CardBottom = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
   padding: 24px;
+  gap: 23px;
 
   .wrapper {
     display: flex;
     align-items: center;
     gap: 8px;
+    width: 118px;
   }
 
   h5 {
@@ -74,6 +75,7 @@ export const Counter = styled.div`
   justify-content: center;
   align-items: center;
 
+  height: 38px;
   padding: 8px;
   gap: 4px;
   border-radius: 6px;
@@ -84,14 +86,17 @@ export const Counter = styled.div`
     color: ${({ theme }) => theme.colors.base.title};
   }
 
-  img {
+  svg {
     width: 14px;
     cursor: pointer;
+    user-select: none;
 
     transition: all 0.1s ease-in;
 
+    fill: ${({ theme }) => theme.colors.brand.purple_dark};
+
     &:hover {
-      filter: brightness(50%);
+      fill: ${({ theme }) => theme.colors.brand.purple};
     }
   }
 `;
@@ -101,8 +106,9 @@ export const CartPurchaseButton = styled.button`
   padding: 8px;
   border-radius: 6px;
 
-  img {
+  svg {
     height: 18px;
+    fill: white;
   }
 
   &:hover {

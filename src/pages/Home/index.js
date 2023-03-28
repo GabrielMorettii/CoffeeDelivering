@@ -1,10 +1,10 @@
 import Header from "../../components/Header";
 
-import whiteCart from "../../assets/images/icons/cart-white.svg";
-import box from "../../assets/images/icons/box.svg";
-import clock from "../../assets/images/icons/clock.svg";
-import mug from "../../assets/images/icons/mug.svg";
-import coffee from "../../assets/images/coffee.svg";
+import {ReactComponent as Cart} from "../../assets/images/icons/shopping-cart-fill.svg";
+import {ReactComponent as Box} from "../../assets/images/icons/package-fill.svg";
+import {ReactComponent as Clock} from "../../assets/images/icons/timer-fill.svg";
+import {ReactComponent as Mug} from "../../assets/images/icons/coffee-fill.svg";
+import coffee  from "../../assets/images/coffee.svg";
 
 import {
   ContentWrapper,
@@ -28,19 +28,19 @@ export default function Home() {
           </p>
           <IconsWrapper>
             <IconItem>
-              <img src={whiteCart} alt="Cart" className="cart" />
+              <Cart className="cart" />
               <span>Compra simples e segura</span>
             </IconItem>
             <IconItem>
-              <img src={box} alt="Box" className="box" />
+              <Box className="box" />
               <span>Embalagem mantém o café intacto</span>
             </IconItem>
             <IconItem>
-              <img src={clock} alt="Clock" className="clock" />
+              <Clock className="clock" />
               <span>Entrega rápida e rastreada</span>
             </IconItem>
             <IconItem>
-              <img src={mug} alt="Mug" className="mug" />
+              <Mug className="mug" />
               <span>O café chega fresquinho até você</span>
             </IconItem>
           </IconsWrapper>
