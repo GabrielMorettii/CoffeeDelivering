@@ -12,6 +12,12 @@ export const ContainerForm = styled.form`
     color: ${({ theme }) => theme.colors.base.subtitle};
     margin-bottom: 15px;
   }
+
+  @media (max-width: 1190px) {
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow-x: scroll;
+  }
 `;
 
 export const CompleteOrderWrapper = styled.div`
@@ -21,6 +27,15 @@ export const CompleteOrderWrapper = styled.div`
   > div + div {
     margin-top: 12px;
   }
+
+
+  @media (max-width: 1190px) {
+    min-width: 674px;
+    width: 100%;
+
+    align-items: flex-start;
+  }
+
 `;
 
 export const RequestDetails = styled.div`
@@ -90,8 +105,7 @@ export const ConfirmButton = styled.button`
 
   transition: all 0.1s ease-in;
 
-  &:hover{
+  &:hover {
     background: ${({ theme }) => theme.colors.brand.yellow_dark};
   }
-
-`
+`;
