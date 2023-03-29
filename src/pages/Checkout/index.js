@@ -1,4 +1,6 @@
-import { Fragment, useContext, useMemo } from "react";
+import { Fragment, useCallback, useContext, useMemo, useRef } from "react";
+
+import { useHistory } from "react-router-dom";
 
 import Header from "../../components/Header";
 import Shipment from "../../components/Shipment";
@@ -20,6 +22,11 @@ import formatPriceToBRL from "../../utils/formatPriceToBRL";
 export default function Checkout() {
   const { orders, onRemove, onEdit } = useContext(OrdersContext);
 
+  const shipmentFormRef = useRef(null);
+  const paymentFormRef = useRef(null);
+
+  const history = useHistory();
+
   const ordersRendered = useMemo(() => {
     return orders.map((order) => (
       <Fragment key={order.id}>
@@ -30,19 +37,38 @@ export default function Checkout() {
   }, [orders, onRemove, onEdit]);
 
   const ordersTotalPrice = useMemo(() => {
-   return orders.reduce((prev, order) => prev + Number(order.price) * order.itemCounter, 0);
+    return orders.reduce(
+      (prev, order) => prev + Number(order.price) * order.itemCounter,
+      0
+    );
   }, [orders]);
 
-  const deliveryPrice = useMemo(() => 3.50,[])
+  const deliveryPrice = useMemo(() => 3.5, []);
+
+  const handleSubmit = useCallback(
+    (event) => {
+      event.preventDefault();
+
+      history.push({
+        pathname: "/success",
+        state: {
+          houseAddress: shipmentFormRef.current.houseAddress,
+          stateAddress: shipmentFormRef.current.stateAddress,
+          paymentMethod: paymentFormRef.current.paymentMethod
+        },
+      });
+    },
+    [history]
+  );
 
   return (
     <>
       <Header />
-      <ContainerForm>
+      <ContainerForm onSubmit={handleSubmit}>
         <CompleteOrderWrapper>
           <h4>Complete seu pedido</h4>
-          <Shipment />
-          <Payment />
+          <Shipment ref={shipmentFormRef} />
+          <Payment ref={paymentFormRef} />
         </CompleteOrderWrapper>
         <RequestDetails>
           <h4>Cafés selecionados</h4>
@@ -59,7 +85,11 @@ export default function Checkout() {
               </div>
               <div className="total">
                 <span>Total</span>
-                <span>{formatPriceToBRL((ordersTotalPrice + deliveryPrice) || deliveryPrice)}</span>
+                <span>
+                  {formatPriceToBRL(
+                    ordersTotalPrice + deliveryPrice || deliveryPrice
+                  )}
+                </span>
               </div>
             </PricesContainer>
             <ConfirmButton>Confirmar Pedido</ConfirmButton>

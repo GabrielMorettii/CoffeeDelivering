@@ -6,11 +6,19 @@ import { ReactComponent as Money } from "../../assets/images/icons/money-regular
 import TitleWrapper from "../TitleWrapper";
 
 import { Container, PaymentOptions } from "./styles";
-import { useState } from "react";
+import { forwardRef, useImperativeHandle, useState } from "react";
 import PaymentMethod from "./PaymentMethod";
 
-export default function Payment() {
+const Payment = forwardRef((_, ref) => {
   const [paymentMethod, setPaymentMethod] = useState("");
+
+  useImperativeHandle(
+    ref,
+    () => ({
+      paymentMethod,
+    }),
+    [paymentMethod]
+  );
 
   return (
     <Container>
@@ -46,4 +54,6 @@ export default function Payment() {
       </PaymentOptions>
     </Container>
   );
-}
+});
+
+export default Payment;

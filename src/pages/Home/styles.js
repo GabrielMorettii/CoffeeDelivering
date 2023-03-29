@@ -7,12 +7,22 @@ export const IntroContainer = styled.div`
 
   gap: 56px;
   height: 544px;
+
+  > img {
+    @media (max-width: 1338px) {
+      display: none;
+    }
+  }
 `;
 
 export const ContentWrapper = styled.div`
   h1 {
     font-size: 48px;
     font-weight: 800;
+
+    @media (max-width: 1338px) {
+      font-size: 2.5rem;
+    }
   }
 
   p {

@@ -9,7 +9,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
 
   position: relative;
 
@@ -31,6 +31,18 @@ export const Container = styled.div`
     text-align: center;
 
     margin-top: 8px;
+  }
+
+  @media (max-width: 632px) {
+    width: 220px;
+
+    > img {
+      width: 90px;
+    }
+
+    h5 {
+      font-size: 20px !important;
+    }
   }
 `;
 
