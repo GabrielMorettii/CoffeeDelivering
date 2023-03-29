@@ -1,16 +1,15 @@
-import { useCallback, useState } from "react";
+import { useCallback } from "react";
 
 import {
   CardBottom,
   CartPurchaseButton,
   Container,
-  Counter,
   LabelsContainer,
 } from "./styles";
 
-import {ReactComponent as Cart} from "../../../assets/images/icons/shopping-cart-fill.svg";
-import {ReactComponent as Minus} from "../../../assets/images/icons/minus-bold.svg";
-import {ReactComponent as Plus} from "../../../assets/images/icons/plus-bold.svg";
+import { ReactComponent as Cart } from "../../../assets/images/icons/shopping-cart-fill.svg";
+
+import Counter from "../../Counter";
 
 export default function CoffeCard({
   image,
@@ -19,24 +18,12 @@ export default function CoffeCard({
   labels,
   price,
 }) {
-  const [itemCounter, setItemCounter] = useState(1);
-
   const formatPriceToBRL = useCallback((price) => {
     return new Intl.NumberFormat("pt-BR", {
       style: "currency",
       currency: "BRL",
     }).format(price);
   }, []);
-
-  const handlePlusClick = () => {
-    setItemCounter((prevState) => prevState + 1);
-  };
-
-  const handleMinusClick = () => {
-    if (itemCounter === 1) return;
-
-    setItemCounter((prevState) => prevState - 1);
-  };
 
   return (
     <Container>
@@ -53,12 +40,7 @@ export default function CoffeCard({
       <CardBottom>
         <h5>{formatPriceToBRL(price)}</h5>
         <div className="wrapper">
-          <Counter>
-            <Minus onClick={handleMinusClick} />
-            <span>{itemCounter}</span>
-            <Plus onClick={handlePlusClick} />
-          </Counter>
-
+          <Counter />
           <CartPurchaseButton>
             <Cart />
           </CartPurchaseButton>
