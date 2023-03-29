@@ -2,24 +2,40 @@ import { Container, ContentWrapper, RemoveButton } from "./styles";
 
 import Counter from "../../components/Counter";
 
-import expresso from '../../assets/images/coffees/Expresso.svg'
-import {ReactComponent as Trash} from '../../assets/images/icons/trash-regular.svg'
+import { ReactComponent as Trash } from "../../assets/images/icons/trash-regular.svg";
 
-export default function Order() {
+import formatPriceToBRL from "../../utils/formatPriceToBRL";
+
+import useItemCounter from "../../hooks/useItemCounter";
+import { useEffect } from "react";
+
+export default function Order({ order, onRemove, onEdit }) {
+  const { itemCounter, handleMinusClick, handlePlusClick } = useItemCounter({
+    initialValue: order.itemCounter,
+  });
+
+  useEffect(() => {
+    onEdit({ id: order.id, itemCounter });
+  }, [itemCounter, onEdit, order.id]);
+
   return (
     <Container>
-      <img src={expresso} alt="Coffe" />
+      <img src={order.image} alt="Coffe" />
       <ContentWrapper>
-        <p>Expresso Tradicional</p>
+        <p>{order.title}</p>
         <div className="actions">
-          <Counter />
-          <RemoveButton>
+          <Counter
+            itemCounter={itemCounter}
+            handleMinusClick={handleMinusClick}
+            handlePlusClick={handlePlusClick}
+          />
+          <RemoveButton onClick={() => onRemove(order)}>
             <Trash />
             <span>Remover</span>
           </RemoveButton>
         </div>
       </ContentWrapper>
-      <span>R$ 9,90</span>
+      <span>{formatPriceToBRL(order.price)}</span>
     </Container>
   );
 }

@@ -1,4 +1,5 @@
 import Header from "../../components/Header";
+import CoffeeList from "../../components/CoffeeList";
 
 import {ReactComponent as Cart} from "../../assets/images/icons/shopping-cart-fill.svg";
 import {ReactComponent as Box} from "../../assets/images/icons/package-fill.svg";
@@ -13,7 +14,6 @@ import {
   IntroContainer,
   Title,
 } from "./styles";
-import CoffeeList from "../../components/CoffeeList";
 
 export default function Home() {
   return (

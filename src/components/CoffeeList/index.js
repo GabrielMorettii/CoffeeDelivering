@@ -7,14 +7,7 @@ export default function CoffeeList() {
   return (
     <Container>
       {coffeeList.map((coffee) => (
-        <CoffeCard
-          key={coffee.id}
-          image={coffee.image}
-          price={coffee.price}
-          labels={coffee.label}
-          title={coffee.name}
-          description={coffee.description}
-        />
+        <CoffeCard key={coffee.id} coffee={coffee} />
       ))}
     </Container>
   );

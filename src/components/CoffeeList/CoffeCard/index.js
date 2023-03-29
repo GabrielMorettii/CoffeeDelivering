@@ -1,4 +1,4 @@
-import { useCallback } from "react";
+import { useContext } from "react";
 
 import {
   CardBottom,
@@ -11,23 +11,21 @@ import { ReactComponent as Cart } from "../../../assets/images/icons/shopping-ca
 
 import Counter from "../../Counter";
 
+import { OrdersContext } from "../../../context/OrdersContext";
+
+import formatPriceToBRL from "../../../utils/formatPriceToBRL";
+
+import useItemCounter from "../../../hooks/useItemCounter";
+
 export default function CoffeCard({
-  image,
-  title,
-  description,
-  labels,
-  price,
+  coffee: { id, image, name, description, labels, price },
 }) {
-  const formatPriceToBRL = useCallback((price) => {
-    return new Intl.NumberFormat("pt-BR", {
-      style: "currency",
-      currency: "BRL",
-    }).format(price);
-  }, []);
+  const { onAddOrder } = useContext(OrdersContext);
+  const { itemCounter, handleMinusClick, handlePlusClick } = useItemCounter();
 
   return (
     <Container>
-      <img src={image} alt={title} />
+      <img src={image} alt={name} />
       <LabelsContainer>
         {labels.map((label, index) => (
           <span key={`label-${index}`} className="coffee-label">
@@ -35,13 +33,21 @@ export default function CoffeCard({
           </span>
         ))}
       </LabelsContainer>
-      <h4>{title}</h4>
+      <h4>{name}</h4>
       <p>{description}</p>
       <CardBottom>
         <h5>{formatPriceToBRL(price)}</h5>
         <div className="wrapper">
-          <Counter />
-          <CartPurchaseButton>
+          <Counter
+            handleMinusClick={handleMinusClick}
+            handlePlusClick={handlePlusClick}
+            itemCounter={itemCounter}
+          />
+          <CartPurchaseButton
+            onClick={() =>
+              onAddOrder({ id, title: name, image, itemCounter, price })
+            }
+          >
             <Cart />
           </CartPurchaseButton>
         </div>

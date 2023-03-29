@@ -45,6 +45,8 @@ export const RemoveButton = styled.div`
   border-radius: 6px;
   padding: 8px;
 
+  transition: all 0.1s ease-in;
+
   svg {
     height: 16px;
     fill: ${({ theme }) => theme.colors.brand.purple};
@@ -53,5 +55,10 @@ export const RemoveButton = styled.div`
   span {
     text-transform: uppercase;
     font-size: 12px;
+  }
+
+  &:hover{
+    cursor: pointer;
+    background: ${({ theme }) => theme.colors.base.hover};
   }
 `;

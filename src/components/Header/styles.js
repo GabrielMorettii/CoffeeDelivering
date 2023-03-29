@@ -21,6 +21,7 @@ export const RightTabSide = styled.div`
     background: ${({ theme }) => theme.colors.brand.yellow_light};
     margin-left: 12px;
     border-radius: 6px;
+    position: relative;
 
     svg {
       height: 22px;
@@ -30,6 +31,22 @@ export const RightTabSide = styled.div`
       &:hover {
         opacity: 0.8;
       }
+    }
+
+    .counter {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      right: -8.35px;
+      top: -8px;
+
+      background: ${({ theme }) => theme.colors.brand.yellow_dark};
+      border-radius: 50%;
+      color: white;
+      font-weight: 700;
+      font-size: 12px;
+      text-align: center;
+      padding: 2px;
     }
   }
 `;

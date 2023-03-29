@@ -1,3 +1,5 @@
+import { Fragment, useContext, useMemo } from "react";
+
 import Header from "../../components/Header";
 import Shipment from "../../components/Shipment";
 import Payment from "../../components/Payment";
@@ -12,8 +14,27 @@ import {
   PricesContainer,
   RequestDetails,
 } from "./styles";
+import { OrdersContext } from "../../context/OrdersContext";
+import formatPriceToBRL from "../../utils/formatPriceToBRL";
 
 export default function Checkout() {
+  const { orders, onRemove, onEdit } = useContext(OrdersContext);
+
+  const ordersRendered = useMemo(() => {
+    return orders.map((order) => (
+      <Fragment key={order.id}>
+        <Order order={order} onRemove={onRemove} onEdit={onEdit} />
+        <LineDivisor />
+      </Fragment>
+    ));
+  }, [orders, onRemove, onEdit]);
+
+  const ordersTotalPrice = useMemo(() => {
+   return orders.reduce((prev, order) => prev + Number(order.price) * order.itemCounter, 0);
+  }, [orders]);
+
+  const deliveryPrice = useMemo(() => 3.50,[])
+
   return (
     <>
       <Header />
@@ -26,29 +47,22 @@ export default function Checkout() {
         <RequestDetails>
           <h4>Cafés selecionados</h4>
           <div className="content">
-            <Orders>
-              <Order />
-              <LineDivisor />
-              <Order />
-              <LineDivisor />
-            </Orders>
+            <Orders>{ordersRendered}</Orders>
             <PricesContainer>
               <div className="itens">
                 <span>Total de Itens</span>
-                <span>R$ 29,70</span>
+                <span>{formatPriceToBRL(ordersTotalPrice || 0)}</span>
               </div>
               <div className="delivery">
                 <span>Entrega</span>
-                <span>R$ 3,50</span>
+                <span>{formatPriceToBRL(deliveryPrice)}</span>
               </div>
               <div className="total">
                 <span>Total</span>
-                <span>R$ 33,20</span>
+                <span>{formatPriceToBRL((ordersTotalPrice + deliveryPrice) || deliveryPrice)}</span>
               </div>
             </PricesContainer>
-            <ConfirmButton>
-              Confirmar Pedido
-            </ConfirmButton>
+            <ConfirmButton>Confirmar Pedido</ConfirmButton>
           </div>
         </RequestDetails>
       </ContainerForm>
