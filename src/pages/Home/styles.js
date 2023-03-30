@@ -9,7 +9,7 @@ export const IntroContainer = styled.div`
   height: 544px;
 
   > img {
-    @media (max-width: 1338px) {
+    @media (max-width: 1550px) {
       display: none;
     }
   }
@@ -68,9 +68,4 @@ export const IconItem = styled.div`
   .mug {
     background: ${({ theme }) => theme.colors.brand.purple};
   }
-`;
-
-export const Title = styled.h1`
-  margin-top: 32px;
-  margin-bottom: 54px;
 `;

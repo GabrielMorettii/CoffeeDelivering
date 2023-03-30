@@ -11,6 +11,7 @@ import {
   CompleteOrderWrapper,
   ConfirmButton,
   ContainerForm,
+  EmptyCart,
   LineDivisor,
   Orders,
   PricesContainer,
@@ -18,6 +19,8 @@ import {
 } from "./styles";
 import { OrdersContext } from "../../context/OrdersContext";
 import formatPriceToBRL from "../../utils/formatPriceToBRL";
+
+import sadFace from "../../assets/images/icons/sad-face.svg";
 
 export default function Checkout() {
   const { orders, onRemove, onEdit } = useContext(OrdersContext);
@@ -54,7 +57,7 @@ export default function Checkout() {
         state: {
           houseAddress: shipmentFormRef.current.houseAddress,
           stateAddress: shipmentFormRef.current.stateAddress,
-          paymentMethod: paymentFormRef.current.paymentMethod
+          paymentMethod: paymentFormRef.current.paymentMethod,
         },
       });
     },
@@ -72,28 +75,42 @@ export default function Checkout() {
         </CompleteOrderWrapper>
         <RequestDetails>
           <h4>Cafés selecionados</h4>
-          <div className="content">
-            <Orders>{ordersRendered}</Orders>
-            <PricesContainer>
-              <div className="itens">
-                <span>Total de Itens</span>
-                <span>{formatPriceToBRL(ordersTotalPrice || 0)}</span>
-              </div>
-              <div className="delivery">
-                <span>Entrega</span>
-                <span>{formatPriceToBRL(deliveryPrice)}</span>
-              </div>
-              <div className="total">
-                <span>Total</span>
-                <span>
-                  {formatPriceToBRL(
-                    ordersTotalPrice + deliveryPrice || deliveryPrice
-                  )}
-                </span>
-              </div>
-            </PricesContainer>
-            <ConfirmButton>Confirmar Pedido</ConfirmButton>
-          </div>
+          {orders.length > 0 ? (
+            <div className="content">
+              <Orders>{ordersRendered}</Orders>
+              <PricesContainer>
+                <div className="itens">
+                  <span>Total de Itens</span>
+                  <span>{formatPriceToBRL(ordersTotalPrice || 0)}</span>
+                </div>
+                <div className="delivery">
+                  <span>Entrega</span>
+                  <span>{formatPriceToBRL(deliveryPrice)}</span>
+                </div>
+                <div className="total">
+                  <span>Total</span>
+                  <span>
+                    {formatPriceToBRL(
+                      ordersTotalPrice + deliveryPrice || deliveryPrice
+                    )}
+                  </span>
+                </div>
+              </PricesContainer>
+              <ConfirmButton>Confirmar Pedido</ConfirmButton>
+            </div>
+          ) : (
+            <EmptyCart>
+              <h4>
+                <span>Ooooops!!</span>
+                <img src={sadFace} alt="Sad Face" />
+              </h4>
+
+              <p>Parece que o seu carrinho está vazio!</p>
+              <p>
+                <strong>Adicione algo para poder prosseguir!</strong>
+              </p>
+            </EmptyCart>
+          )}
         </RequestDetails>
       </ContainerForm>
     </>

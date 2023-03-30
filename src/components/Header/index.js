@@ -2,7 +2,7 @@ import { useContext } from "react";
 
 import { Link } from "react-router-dom";
 
-import { Container, Location, RightTabSide } from "./styles";
+import { Container, Counter, Location, RightTabSide } from "./styles";
 
 import logo from "../../assets/images/logo.svg";
 import { ReactComponent as Pin } from "../../assets/images/icons/map-pin-fill.svg";
@@ -25,9 +25,7 @@ export default function Header() {
         </Location>
         <Link to="checkout">
           <Cart />
-          {orders.length > 0 && (
-            <span className="counter">{orders.length}</span>
-          )}
+          <Counter>{orders.length}</Counter>
         </Link>
       </RightTabSide>
     </Container>

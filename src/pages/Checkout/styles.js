@@ -41,12 +41,26 @@ export const CompleteOrderWrapper = styled.div`
 export const RequestDetails = styled.div`
   justify-self: flex-start;
 
-  .content {
+  > div {
     background: ${({ theme }) => theme.colors.base.card};
     padding: 40px;
     border-radius: 6px 44px;
   }
 `;
+
+export const EmptyCart = styled.div`
+  h4 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+  }
+
+  p {
+    margin-top: 24px;
+  }
+`
 
 export const Orders = styled.div`
   display: flex;

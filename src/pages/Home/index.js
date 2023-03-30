@@ -1,18 +1,17 @@
 import Header from "../../components/Header";
 import CoffeeList from "../../components/CoffeeList";
 
-import {ReactComponent as Cart} from "../../assets/images/icons/shopping-cart-fill.svg";
-import {ReactComponent as Box} from "../../assets/images/icons/package-fill.svg";
-import {ReactComponent as Clock} from "../../assets/images/icons/timer-fill.svg";
-import {ReactComponent as Mug} from "../../assets/images/icons/coffee-fill.svg";
-import coffee  from "../../assets/images/coffee.svg";
+import { ReactComponent as Cart } from "../../assets/images/icons/shopping-cart-fill.svg";
+import { ReactComponent as Box } from "../../assets/images/icons/package-fill.svg";
+import { ReactComponent as Clock } from "../../assets/images/icons/timer-fill.svg";
+import { ReactComponent as Mug } from "../../assets/images/icons/coffee-fill.svg";
+import coffee from "../../assets/images/coffee.svg";
 
 import {
   ContentWrapper,
   IconItem,
   IconsWrapper,
   IntroContainer,
-  Title,
 } from "./styles";
 
 export default function Home() {
@@ -47,7 +46,6 @@ export default function Home() {
         </ContentWrapper>
         <img src={coffee} alt="coffe banner" />
       </IntroContainer>
-      <Title>Nossos Cafés</Title>
       <CoffeeList />
     </>
   );

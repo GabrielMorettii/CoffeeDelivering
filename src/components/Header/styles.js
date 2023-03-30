@@ -23,32 +23,33 @@ export const RightTabSide = styled.div`
     border-radius: 6px;
     position: relative;
 
+    transition: all 0.15s ease-in;
+
     svg {
       height: 22px;
       fill: ${({ theme }) => theme.colors.brand.yellow_dark};
-      transition: all 0.1s ease-in;
-
-      &:hover {
-        opacity: 0.8;
-      }
     }
 
-    .counter {
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      right: -8.35px;
-      top: -8px;
-
-      background: ${({ theme }) => theme.colors.brand.yellow_dark};
-      border-radius: 50%;
-      color: white;
-      font-weight: 700;
-      font-size: 12px;
-      text-align: center;
-      padding: 2px;
+    &:hover {
+      transform: scale(1.09);
     }
   }
+`;
+
+export const Counter = styled.span`
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  right: -8.35px;
+  top: -8px;
+
+  background: ${({ theme }) => theme.colors.brand.yellow_dark};
+  border-radius: 50%;
+  color: white;
+  font-weight: 700;
+  font-size: 12px;
+  text-align: center;
+  padding: 2px;
 `;
 
 export const Location = styled.div`

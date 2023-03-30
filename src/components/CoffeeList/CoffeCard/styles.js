@@ -13,6 +13,10 @@ export const Container = styled.div`
 
   position: relative;
 
+  box-shadow: 0 0 1px black;
+
+  transition: all 0.2s ease-in;
+
   > img {
     width: 120px;
     transform: translateY(-25%);
@@ -43,6 +47,10 @@ export const Container = styled.div`
     h5 {
       font-size: 20px !important;
     }
+  }
+
+  &:hover{
+    transform: scale(1.09);
   }
 `;
 
