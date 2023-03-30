@@ -17,8 +17,6 @@ ___
 
 5. [Contribution](#contributing)
 
-6. [License](#license)
-
 
 ## 💻 About <a name="general-information" />
 
@@ -29,7 +27,7 @@ ___
 
 ## 🎨 Overview <a name="overview" />
 
-![Capa](https://user-images.githubusercontent.com/106932234/216726306-2651c34e-296d-4c50-8ed3-242a86a038be.png)
+![Overview](https://user-images.githubusercontent.com/82847695/228856214-345df9ed-36eb-442b-a181-c3fde709481f.gif)
 
 ___
 
